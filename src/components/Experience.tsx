@@ -1,0 +1,118 @@
+import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Briefcase } from "lucide-react";
+
+const experiences = [
+  {
+    title: "Data Science Fellow",
+    company: "UC Riverside, Information Technology Services",
+    location: "Riverside, CA",
+    period: "June 2025 – Present",
+    description: [
+      "Engineered a Python-based intelligent AI Agent powered by GPT-4.0 mini, adopted by over 500 UCR students",
+      "Built a robust data backend using MongoDB and vector database for 10,000+ course offerings with RAG",
+      "Implemented dynamic agent control functionalities, saving 2+ hours of decision-making per student"
+    ],
+    skills: ["Python", "GPT-4", "MongoDB", "RAG", "Vector DB", "FastAPI"]
+  },
+  {
+    title: "Machine Learning Research Assistant",
+    company: "UC Riverside, Computer Science Research Lab",
+    location: "Riverside, CA",
+    period: "April 2025 – Present",
+    description: [
+      "Developed and trained MiniRocket-based time series classification models across 106 UCR datasets",
+      "Achieved average accuracy of ~92% across diverse time series classification tasks",
+      "Implementing FPGA acceleration with preliminary speedups exceeding 20x over CPU baseline"
+    ],
+    skills: ["Machine Learning", "MiniRocket", "FPGA", "Python", "Time Series"]
+  },
+  {
+    title: "Software Engineering Intern",
+    company: "Reeko Cabinets, LLC",
+    location: "Union City, CA",
+    period: "June 2024 – September 2024",
+    description: [
+      "Engineered a PyTorch-based linear regression model to forecast bi-monthly parts demand",
+      "Improved prediction accuracy by 25% through consolidated dataset of 1000+ historical records",
+      "Designed automated ordering model minimizing stockout incidents and optimizing inventory"
+    ],
+    skills: ["PyTorch", "Linear Regression", "Data Analysis", "Python", "Excel"]
+  },
+  {
+    title: "Software Engineer Intern",
+    company: "Crest Data Systems",
+    location: "San Jose, CA",
+    period: "June 2023 – August 2023",
+    description: [
+      "Developed custom Splunk app ingesting 1000+ log files per minute from HR server",
+      "Created real-time monitoring dashboards for system events and error tracking",
+      "Corrected 12% login error rate, improving system stability for enterprise clients"
+    ],
+    skills: ["Splunk", "Python", "Linux", "Log Analysis", "Dashboards"]
+  }
+];
+
+export const Experience = () => {
+  return (
+    <section id="experience" className="py-20 px-6 bg-secondary/20">
+      <div className="container max-w-6xl mx-auto">
+        <div className="text-center mb-16 animate-slide-up">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-primary bg-clip-text text-transparent">
+            Experience
+          </h2>
+          <p className="text-muted-foreground text-lg">
+            Professional journey in software engineering and data science
+          </p>
+        </div>
+
+        <div className="space-y-6">
+          {experiences.map((exp, index) => (
+            <Card 
+              key={index}
+              className="p-6 md:p-8 bg-gradient-card backdrop-blur-sm border-border hover:shadow-glow transition-all duration-300 hover:-translate-y-1 animate-slide-up"
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              <div className="flex flex-col md:flex-row md:items-start gap-4">
+                <div className="flex-shrink-0">
+                  <div className="p-3 rounded-full bg-primary/20 w-fit">
+                    <Briefcase className="h-6 w-6 text-primary" />
+                  </div>
+                </div>
+                
+                <div className="flex-grow space-y-4">
+                  <div>
+                    <h3 className="text-xl md:text-2xl font-bold text-foreground mb-1">{exp.title}</h3>
+                    <p className="text-primary font-semibold">{exp.company}</p>
+                    <div className="flex flex-wrap gap-2 text-sm text-muted-foreground mt-1">
+                      <span>{exp.location}</span>
+                      <span>•</span>
+                      <span>{exp.period}</span>
+                    </div>
+                  </div>
+
+                  <ul className="space-y-2">
+                    {exp.description.map((item, i) => (
+                      <li key={i} className="text-foreground/80 flex items-start gap-2">
+                        <span className="text-primary mt-1.5">▹</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="flex flex-wrap gap-2 pt-2">
+                    {exp.skills.map((skill, i) => (
+                      <Badge key={i} variant="secondary" className="bg-secondary/60 hover:bg-secondary">
+                        {skill}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
