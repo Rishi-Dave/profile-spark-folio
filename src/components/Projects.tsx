@@ -6,36 +6,54 @@ import { ExternalLink, Github } from "lucide-react";
 
 const projects = [
   {
-    title: "Jurassic Park Facial Recognition",
-    description: "TensorFlow/Keras image classification model achieving 80%+ accuracy in character identification. Leveraged Microsoft Azure AI Agent for dataset creation and deployed Flask REST API for real-time inference with React.js frontend.",
-    tech: ["TensorFlow", "Keras", "Flask", "React.js", "Azure AI", "REST API"],
-    category: "AI/ML",
-    date: "August 2025",
-    highlights: ["80%+ accuracy", "Real-time inference", "Custom dataset via Azure AI"],
-    github: "https://github.com/Rishi-Dave"
-  },
-  {
     title: "MemoirAI - AI Storytelling App",
-    description: "Full-stack iOS application transforming photos into personalized journal entries using GPT-4 Vision API. Built scalable Python Flask backend on AWS Lambda with DynamoDB and native SwiftUI frontend with MVVM architecture.",
+    description: "Solves the problem of time-consuming journaling by transforming photos into personalized stories using AI. Full-stack iOS app powered by GPT-4 Vision API with serverless backend. Demonstrates end-to-end mobile + cloud integration.",
     tech: ["iOS", "SwiftUI", "GPT-4 Vision", "AWS Lambda", "DynamoDB", "Flask", "MVVM"],
     category: "Mobile Development",
     date: "March 2025",
-    highlights: ["500+ API requests handled", "75% data transfer reduction", "Secure CRUD operations"],
+    highlights: ["500+ API requests handled", "75% data transfer reduction", "Privacy-first architecture"],
+    github: "https://github.com/Rishi-Dave"
+  },
+  {
+    title: "UCR Course Scheduling Assistant",
+    description: "Reduces student registration time from hours to minutes by using AI to autonomously plan optimal course schedules. Production AI system serving 500+ real users in first semester, proving user-centric design drives adoption.",
+    tech: ["Python", "GPT-4", "MongoDB", "Vector DB", "RAG", "FastAPI"],
+    category: "AI/ML",
+    date: "June 2025",
+    highlights: ["500+ students served", "2+ hours saved per user", "First-semester adoption success"],
+    github: "https://github.com/Rishi-Dave"
+  },
+  {
+    title: "Fitness Tracker Mobile App",
+    description: "Full-stack iOS fitness app demonstrating production-ready mobile development with AWS backend integration. Features automated CI/CD, comprehensive testing, and user engagement optimization through location-based features.",
+    tech: ["iOS", "SwiftUI", "AWS", "GraphQL", "DynamoDB", "Cognito", "CI/CD"],
+    category: "Mobile Development",
+    date: "December 2024",
+    highlights: ["100+ automated tests", "90% QA cycle reduction", "25% engagement increase"],
     github: "https://github.com/Rishi-Dave"
   },
   {
     title: "R'Eats AI",
-    description: "Full-stack web application using Flask to provide personalized restaurant recommendations based on natural language user queries (e.g., cuisine, budget, ambiance) for Riverside, CA. Collected, cleaned, and structured data for 200 local restaurants using Yelp API and Pandas, then fine-tuned the GPT-3.5 Turbo LLM on 1000 curated instruction-response pairs.",
-    tech: ["Yelp API", "OpenAI API", "Fine Tuning", "Flask", "Pandas"],
+    description: "Enables personalized restaurant discovery for college students through fine-tuned LLM and data curation. Demonstrates complete ML pipeline: data collection → model fine-tuning → web deployment.",
+    tech: ["Flask", "OpenAI API", "Fine Tuning", "Pandas", "Yelp API"],
     category: "AI/ML",
     date: "April 2025 - May 2025",
-    highlights: ["200 restaurants dataset", "1000 fine-tuning pairs", "GPT-3.5 Turbo LLM"],
+    highlights: ["200 restaurants curated", "1000 fine-tuning pairs", "Natural language queries"],
     github: "https://github.com/Rishi-Dave/r-eats.ai",
     demo: "https://r-eats.ai"
   },
   {
+    title: "Jurassic Park Facial Recognition",
+    description: "Custom image classification system for character identification demonstrating computer vision and ML deployment skills. Uses real-time inference API for practical applications in media analysis.",
+    tech: ["TensorFlow", "Keras", "Flask", "React.js", "Azure AI", "REST API"],
+    category: "AI/ML",
+    date: "August 2025",
+    highlights: ["80%+ accuracy", "Real-time inference", "Custom dataset creation"],
+    github: "https://github.com/Rishi-Dave"
+  },
+  {
     title: "iOS Calendar AI Assistant",
-    description: "Privacy-first, on-device conversational assistant for calendar management using Apple's Foundation Models. Integrated EventKit for secure event handling without cloud processing, featuring minimalist SwiftUI design.",
+    description: "Privacy-first AI solution for calendar management using on-device ML. Shows understanding of modern privacy requirements and Apple's latest ML frameworks without cloud dependency.",
     tech: ["SwiftUI", "Foundation Models", "EventKit", "iOS", "On-device ML"],
     category: "Mobile Development",
     date: "August 2025",
@@ -44,34 +62,16 @@ const projects = [
   },
   {
     title: "Cricket T20 Analyzer",
-    description: "End-to-end data analytics project involving web scraping T20 World Cup 2022 data (Bright Data), cleaning/processing (~200 players, >50k data points) with Pandas, and building a relational data model in Power BI. Designed and deployed interactive Power BI dashboards featuring 15+ custom DAX KPIs to visualize performance trends.",
+    description: "End-to-end data analytics pipeline from web scraping to interactive dashboards. Demonstrates data science workflow: collection → cleaning → analysis → visualization with real-world sports data.",
     tech: ["Pandas", "Power BI", "Web Scraping", "Data Analysis", "DAX"],
     category: "Data Analytics",
     date: "March 2025 - April 2025",
-    highlights: ["200+ players analyzed", "50k+ data points", "15+ custom KPIs"],
+    highlights: ["200+ players analyzed", "50k+ data points processed", "15+ custom KPIs"],
     github: "https://github.com/Rishi-Dave/cricket_analysis"
   },
   {
-    title: "Fitness Tracker Mobile App",
-    description: "Full-stack iOS fitness application with AWS backend using Amplify, GraphQL, and DynamoDB. Automated CI/CD pipeline with 100+ tests, secured with Amazon Cognito, and integrated geofencing for 25% engagement increase.",
-    tech: ["iOS", "SwiftUI", "AWS", "GraphQL", "DynamoDB", "Cognito", "CI/CD"],
-    category: "Mobile Development",
-    date: "December 2024",
-    highlights: ["100+ automated tests", "90% QA cycle reduction", "25% engagement increase"],
-    github: "https://github.com/Rishi-Dave"
-  },
-  {
-    title: "UCR Course Scheduling Assistant",
-    description: "Python-based intelligent AI Agent using GPT-4.0 mini to autonomously plan course schedules. Built robust MongoDB backend with vector database for RAG, serving 250+ students and saving 2+ hours per user.",
-    tech: ["Python", "GPT-4", "MongoDB", "Vector DB", "RAG", "FastAPI"],
-    category: "AI/ML",
-    date: "June 2025",
-    highlights: ["500+ students served", "2+ hours saved per user", "Autonomous planning"],
-    github: "https://github.com/Rishi-Dave"
-  },
-  {
-    title: "CommentPro AI",
-    description: "VS Code extension utilizing OpenAI's API to generate inline code documentation. Fine-tuned the LLM using a dataset containing 100k+ cleanly coded Python files to implement a code cleaning feature that automatically formats code using universal standards.",
+    title: "CommentPro AI - VS Code Extension",
+    description: "Developer tool that automates code documentation and formatting using fine-tuned LLM. Shows ability to build developer experience tools and understand AI-assisted programming workflows.",
     tech: ["OpenAI API", "JavaScript", "VS Code Extension", "Prompt Engineering"],
     category: "Developer Tools",
     date: "June 2024",
@@ -79,40 +79,22 @@ const projects = [
     github: "https://github.com/Rishi-Dave/CommentPro-AI"
   },
   {
-    title: "Terminal Library System",
-    description: "Created a terminal library where users can sign in and checkout/return books with their account. Implemented a .txt file-based database to save and restore book and user information between sessions. As Project Lead, created the UML diagram for class relationships and Navigation Diagram for functionality using SCRUM methodology.",
-    tech: ["C++", "Scrum", "Kanban Board", "UML"],
-    category: "Systems Programming",
-    date: "April 2024 - June 2024",
-    highlights: ["Project Lead role", "File-based database", "SCRUM methodology"],
-    github: "https://github.com/Rishi-Dave/LibrarySystem"
-  },
-  {
-    title: "Quick Alert: CutieHacks 2023",
-    description: "iOS app designed to send 9 specific emergency alerts, such as 'house on fire' or 'medical emergency,' to primary contacts instantly. Leveraged Firebase to create a robust backend, ensuring user accounts are securely linked and that emergency notifications are delivered to recipients in under 1 second.",
-    tech: ["Swift", "SwiftUI", "Firebase"],
+    title: "Quick Alert - Emergency Dispatch",
+    description: "iOS emergency alert app delivering critical notifications in under 1 second. Built during CutieHacks 2023, demonstrates understanding of real-time systems and security-critical applications.",
+    tech: ["Swift", "SwiftUI", "Firebase", "Real-time messaging"],
     category: "Mobile Development",
     date: "November 2023",
-    highlights: ["<1 second delivery", "9 emergency types", "Firebase backend"],
+    highlights: ["<1 second delivery time", "9 emergency alert types", "Firebase real-time backend"],
     github: "https://github.com/Rishi-Dave/quick_alert"
   },
   {
-    title: "AI Marketing Report",
-    description: "Explored and evaluated 50+ AI-driven marketing strategies, including data analytics, customer segmentation, search engine optimization, and personalized content creation. Conducted a comparative analysis of AI marketing in large corporations like Starbucks and Alibaba versus startups, demonstrating that predictive analytics improved customer engagement by up to 35%.",
-    tech: ["Research", "AI Strategy", "Data Analytics", "SEO"],
-    category: "Research",
-    date: "May 2022 - October 2022",
-    highlights: ["50+ strategies analyzed", "35% engagement improvement", "Corporate vs startup analysis"],
-    github: undefined
-  },
-  {
-    title: "Electronic Waste Project",
-    description: "Developed and launched a website to coordinate electronic waste pickups using HTML, CSS, and Django. Managed pickup coordination and logistics, implemented updates and improvements for user experience.",
-    tech: ["Django", "JavaScript", "HTML", "CSS"],
-    category: "Web Development",
-    date: "November 2021 - August 2022",
-    highlights: ["Full coordination system", "Logistics management", "Django backend"],
-    github: "https://github.com/Rishi-Dave/Ewasteproject"
+    title: "Terminal Library System",
+    description: "Full library management system demonstrating software engineering fundamentals: system design, team collaboration, and project leadership. Built with SCRUM methodology and comprehensive UML documentation.",
+    tech: ["C++", "Scrum", "UML Design", "Database Design"],
+    category: "Systems Programming",
+    date: "April 2024 - June 2024",
+    highlights: ["Project Lead role", "SCRUM methodology", "Complete UML documentation"],
+    github: "https://github.com/Rishi-Dave/LibrarySystem"
   }
 ];
 

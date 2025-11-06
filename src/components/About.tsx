@@ -59,13 +59,20 @@ export const About = () => {
         </div>
 
         <Card className="p-8 bg-gradient-card backdrop-blur-sm border-border">
-          <p className="text-foreground/90 leading-relaxed text-center max-w-4xl mx-auto">
-            I'm a Computer Science student at UC Riverside with a passion for leveraging technology to solve complex problems. 
-            Currently working as a Data Science Fellow and Machine Learning Research Assistant, I've developed AI-powered systems 
-            that serve hundreds of users and achieved 92% accuracy in time series classification models. My experience spans from 
-            building iOS applications with SwiftUI to implementing scalable backend systems with AWS and MongoDB. I'm driven by 
-            the challenge of creating intelligent, user-centric solutions that make a real-world impact.
-          </p>
+          <div className="space-y-4 max-w-4xl mx-auto">
+            <p className="text-foreground/90 leading-relaxed">
+              I'm a Computer Science student at UC Riverside combining AI research with practical engineering.
+              I've worked across the full stack—from iOS development to cloud systems to machine learning—and I'm most excited when
+              I can bridge research concepts with real user impact.
+            </p>
+
+            <p className="text-foreground/90 leading-relaxed">
+              My experience spans 4+ years of technical work: internships at startups and established tech companies,
+              current roles in AI research and data science, and a portfolio of 10+ shipped projects.
+              I'm particularly interested in production ML systems, full-stack engineering, and how to build solutions
+              that people actually want to use.
+            </p>
+          </div>
         </Card>
       </div>
     </section>

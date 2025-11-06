@@ -13,7 +13,9 @@ const experiences = [
       "Built a robust data backend using MongoDB and vector database for 10,000+ course offerings with RAG",
       "Implemented dynamic agent control functionalities, saving 2+ hours of decision-making per student"
     ],
-    skills: ["Python", "GPT-4", "MongoDB", "RAG", "Vector DB", "FastAPI"]
+    skills: ["Python", "GPT-4", "MongoDB", "RAG", "Vector DB", "FastAPI"],
+    summary: "Demonstrated ability to ship production AI systems that drive real user adoption",
+    learning: "Intelligent product design drives adoption - user understanding beats feature complexity"
   },
   {
     title: "Machine Learning Research Assistant",
@@ -25,7 +27,9 @@ const experiences = [
       "Achieved average accuracy of ~92% across diverse time series classification tasks",
       "Implementing FPGA acceleration with preliminary speedups exceeding 20x over CPU baseline"
     ],
-    skills: ["Machine Learning", "MiniRocket", "FPGA", "Python", "Time Series"]
+    skills: ["Machine Learning", "MiniRocket", "FPGA", "Python", "Time Series"],
+    summary: "Research expertise combined with systems-level optimization - bridging theory and practical engineering",
+    learning: "Performance gains require understanding both algorithms and hardware constraints"
   },
   {
     title: "Software Engineering Intern",
@@ -37,7 +41,9 @@ const experiences = [
       "Improved prediction accuracy by 25% through consolidated dataset of 1000+ historical records",
       "Designed automated ordering model minimizing stockout incidents and optimizing inventory"
     ],
-    skills: ["PyTorch", "Linear Regression", "Data Analysis", "Python", "Excel"]
+    skills: ["PyTorch", "Linear Regression", "Data Analysis", "Python", "Excel"],
+    summary: "Proved ability to drive direct business impact - 25% accuracy improvement reduced operational costs",
+    learning: "Data engineering is as critical as modeling - quality data multiplies model effectiveness"
   },
   {
     title: "Software Engineer Intern",
@@ -49,7 +55,9 @@ const experiences = [
       "Created real-time monitoring dashboards for system events and error tracking",
       "Corrected 12% login error rate, improving system stability for enterprise clients"
     ],
-    skills: ["Splunk", "Python", "Linux", "Log Analysis", "Dashboards"]
+    skills: ["Splunk", "Python", "Linux", "Log Analysis", "Dashboards"],
+    summary: "Hands-on experience with enterprise systems - operational visibility is as critical as features",
+    learning: "Effective communication of technical findings to non-technical stakeholders drives adoption"
   }
 ];
 
@@ -112,7 +120,18 @@ export const Experience = () => {
                           ))}
                         </ul>
 
-                        <div className="flex flex-wrap gap-2 pt-2">
+                        <div className="grid md:grid-cols-2 gap-4 pt-3 border-t border-border/50">
+                          <div className="p-3 bg-primary/5 rounded">
+                            <p className="text-xs font-semibold text-primary mb-1">ROLE IMPACT</p>
+                            <p className="text-sm text-foreground/80">{exp.summary}</p>
+                          </div>
+                          <div className="p-3 bg-accent/5 rounded">
+                            <p className="text-xs font-semibold text-accent mb-1">KEY LEARNING</p>
+                            <p className="text-sm text-foreground/80">{exp.learning}</p>
+                          </div>
+                        </div>
+
+                        <div className="flex flex-wrap gap-2 pt-3">
                           {exp.skills.map((skill, i) => (
                             <Badge key={i} variant="secondary" className="bg-secondary/60 hover:bg-secondary transition-colors">
                               {skill}

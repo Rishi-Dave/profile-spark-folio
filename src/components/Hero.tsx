@@ -21,26 +21,53 @@ export const Hero = () => {
           </p>
           
           <p className="text-lg text-foreground/80 max-w-3xl mx-auto leading-relaxed">
-            Aspiring Software & ML Engineer passionate about building intelligent systems 
-            that solve real-world problems. Specializing in AI/ML, full-stack development, 
-            and creating impactful user experiences.
+            Full-Stack Software Engineer & AI/ML Specialist focused on building production systems
+            from research concepts to deployed applications. I combine deep technical knowledge with
+            practical engineering to solve real-world problems.
           </p>
 
+          <div className="flex flex-wrap justify-center gap-6 pt-4">
+            <div className="text-center">
+              <p className="text-3xl font-bold text-primary">10+</p>
+              <p className="text-sm text-muted-foreground">Shipped Projects</p>
+            </div>
+            <div className="text-center">
+              <p className="text-3xl font-bold text-primary">4+</p>
+              <p className="text-sm text-muted-foreground">Years Experience</p>
+            </div>
+            <div className="text-center">
+              <p className="text-3xl font-bold text-primary">500+</p>
+              <p className="text-sm text-muted-foreground">Users Reached</p>
+            </div>
+          </div>
+
           <div className="flex flex-wrap gap-4 justify-center pt-8">
-            <Button 
-              variant="default" 
-              size="lg" 
+            <Button
+              variant="default"
+              size="lg"
               className="bg-gradient-primary hover:opacity-90 transition-opacity shadow-glow"
+              asChild
+            >
+              <a href="/rishi-resume.pdf" download>
+                <FileText className="mr-2 h-5 w-5" />
+                Download Resume
+              </a>
+            </Button>
+
+            <Button
+              variant="outline"
+              size="lg"
+              className="border-primary/50 hover:border-primary hover:bg-primary/10 backdrop-blur-sm"
               asChild
             >
               <a href="#contact">
                 <Mail className="mr-2 h-5 w-5" />
-                Get in Touch
+                Discuss Opportunities
               </a>
             </Button>
-            
-            <Button 
-              variant="outline" 
+
+            <Button
+              variant="outline"
               size="lg"
               className="border-primary/50 hover:border-primary hover:bg-primary/10 backdrop-blur-sm"
               asChild

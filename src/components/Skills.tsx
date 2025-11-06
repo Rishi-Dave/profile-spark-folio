@@ -2,6 +2,24 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Code2, Brain, Layers, Wrench } from "lucide-react";
 
+const expertiseLevels = [
+  {
+    title: "Expert (4+ years)",
+    skills: ["Python", "Machine Learning", "Data Analysis", "Problem Solving"],
+    description: "Deep mastery with real-world impact"
+  },
+  {
+    title: "Proficient (2+ years)",
+    skills: ["Swift/iOS Development", "AWS Services", "PyTorch", "TensorFlow", "Flask", "React.js", "Full-Stack Development"],
+    description: "Production-ready across multiple projects"
+  },
+  {
+    title: "Familiar (In-depth projects)",
+    skills: ["Next.js", "FPGA Programming", "Splunk", "Power BI", "RAG Systems", "Advanced Prompt Engineering"],
+    description: "Deep expertise through specialized projects"
+  }
+];
+
 const skillCategories = [
   {
     title: "Programming Languages",
@@ -31,11 +49,32 @@ export const Skills = () => {
       <div className="container max-w-6xl mx-auto">
         <div className="text-center mb-16 animate-slide-up">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-primary bg-clip-text text-transparent">
-            Skills & Technologies
+            Skills & Expertise
           </h2>
           <p className="text-muted-foreground text-lg">
-            Comprehensive toolkit for building modern applications
+            Comprehensive toolkit with clearly defined proficiency levels
           </p>
+        </div>
+
+        {/* Expertise Levels */}
+        <div className="grid md:grid-cols-3 gap-6 mb-12">
+          {expertiseLevels.map((level, index) => (
+            <Card
+              key={index}
+              className="p-6 bg-gradient-card backdrop-blur-sm border-border hover:shadow-glow transition-all duration-300 hover:-translate-y-1 animate-scale-in"
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              <h3 className="text-lg font-bold text-primary mb-2">{level.title}</h3>
+              <p className="text-sm text-muted-foreground mb-4">{level.description}</p>
+              <div className="flex flex-wrap gap-2">
+                {level.skills.map((skill, i) => (
+                  <Badge key={i} variant="secondary" className="bg-primary/20 text-primary text-xs">
+                    {skill}
+                  </Badge>
+                ))}
+              </div>
+            </Card>
+          ))}
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">

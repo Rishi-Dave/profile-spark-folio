@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Mail, Github, Linkedin, MapPin, Phone } from "lucide-react";
+import { Mail, Github, Linkedin, MapPin, Phone, Zap, Users, Target } from "lucide-react";
 
 export const Contact = () => {
   return (
@@ -14,6 +14,51 @@ export const Contact = () => {
             I'm currently seeking full-time opportunities in Software Engineering and Machine Learning. 
             Let's connect and build something amazing together!
           </p>
+        </div>
+
+        {/* What I'm Looking For */}
+        <div className="mb-12 grid md:grid-cols-3 gap-6">
+          <Card className="p-6 bg-gradient-card backdrop-blur-sm border-border hover:shadow-glow transition-all duration-300 hover:-translate-y-1">
+            <div className="flex flex-col items-center text-center space-y-3">
+              <div className="p-3 rounded-full bg-primary/20">
+                <Zap className="h-6 w-6 text-primary" />
+              </div>
+              <div>
+                <h4 className="font-semibold text-foreground mb-2">ML Engineering</h4>
+                <p className="text-sm text-muted-foreground">
+                  LLM systems, RAG, model optimization, and production ML ops
+                </p>
+              </div>
+            </div>
+          </Card>
+
+          <Card className="p-6 bg-gradient-card backdrop-blur-sm border-border hover:shadow-glow transition-all duration-300 hover:-translate-y-1">
+            <div className="flex flex-col items-center text-center space-y-3">
+              <div className="p-3 rounded-full bg-accent/20">
+                <Target className="h-6 w-6 text-accent" />
+              </div>
+              <div>
+                <h4 className="font-semibold text-foreground mb-2">Full-Stack Engineering</h4>
+                <p className="text-sm text-muted-foreground">
+                  Backend systems, iOS integration, scalable architecture design
+                </p>
+              </div>
+            </div>
+          </Card>
+
+          <Card className="p-6 bg-gradient-card backdrop-blur-sm border-border hover:shadow-glow transition-all duration-300 hover:-translate-y-1">
+            <div className="flex flex-col items-center text-center space-y-3">
+              <div className="p-3 rounded-full bg-primary/20">
+                <Users className="h-6 w-6 text-primary" />
+              </div>
+              <div>
+                <h4 className="font-semibold text-foreground mb-2">Early-Stage Impact</h4>
+                <p className="text-sm text-muted-foreground">
+                  Startups leveraging AI/ML for core product differentiation
+                </p>
+              </div>
+            </div>
+          </Card>
         </div>
 
         <Card className="p-8 md:p-10 bg-gradient-card backdrop-blur-sm border-border shadow-glow">
