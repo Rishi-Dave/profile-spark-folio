@@ -1,3 +1,4 @@
+import { useState, useMemo } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -42,6 +43,23 @@ const projects = [
 ];
 
 export const Projects = () => {
+  const [selectedTech, setSelectedTech] = useState<string | null>(null);
+
+  // Get all unique technologies
+  const allTechnologies = useMemo(() => {
+    const techSet = new Set<string>();
+    projects.forEach(project => {
+      project.tech.forEach(tech => techSet.add(tech));
+    });
+    return Array.from(techSet).sort();
+  }, []);
+
+  // Filter projects based on selected technology
+  const filteredProjects = useMemo(() => {
+    if (!selectedTech) return projects;
+    return projects.filter(project => project.tech.includes(selectedTech));
+  }, [selectedTech]);
+
   return (
     <section id="projects" className="py-20 px-6">
       <div className="container max-w-6xl mx-auto">
@@ -54,8 +72,44 @@ export const Projects = () => {
           </p>
         </div>
 
+        {/* Technology Filter */}
+        <div className="mb-8 animate-fade-in">
+          <div className="flex flex-wrap justify-center gap-2 mb-4">
+            <Badge
+              onClick={() => setSelectedTech(null)}
+              variant={selectedTech === null ? "default" : "secondary"}
+              className={`cursor-pointer transition-all duration-300 ${
+                selectedTech === null 
+                  ? "bg-primary text-primary-foreground hover:bg-primary/90" 
+                  : "bg-secondary/60 hover:bg-secondary"
+              }`}
+            >
+              All Projects
+            </Badge>
+            {allTechnologies.map((tech) => (
+              <Badge
+                key={tech}
+                onClick={() => setSelectedTech(tech === selectedTech ? null : tech)}
+                variant={selectedTech === tech ? "default" : "secondary"}
+                className={`cursor-pointer transition-all duration-300 ${
+                  selectedTech === tech 
+                    ? "bg-primary text-primary-foreground hover:bg-primary/90" 
+                    : "bg-secondary/60 hover:bg-secondary"
+                }`}
+              >
+                {tech}
+              </Badge>
+            ))}
+          </div>
+          {selectedTech && (
+            <p className="text-center text-sm text-muted-foreground animate-fade-in">
+              Showing {filteredProjects.length} project{filteredProjects.length !== 1 ? 's' : ''} with {selectedTech}
+            </p>
+          )}
+        </div>
+
         <div className="grid md:grid-cols-2 gap-6">
-          {projects.map((project, index) => (
+          {filteredProjects.map((project, index) => (
             <Card 
               key={index}
               className="p-6 bg-gradient-card backdrop-blur-sm border-border hover:shadow-glow transition-all duration-300 hover:-translate-y-1 group animate-scale-in"

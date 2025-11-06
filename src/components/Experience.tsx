@@ -66,51 +66,66 @@ export const Experience = () => {
           </p>
         </div>
 
-        <div className="space-y-6">
-          {experiences.map((exp, index) => (
-            <Card 
-              key={index}
-              className="p-6 md:p-8 bg-gradient-card backdrop-blur-sm border-border hover:shadow-glow transition-all duration-300 hover:-translate-y-1 animate-slide-up"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <div className="flex flex-col md:flex-row md:items-start gap-4">
-                <div className="flex-shrink-0">
-                  <div className="p-3 rounded-full bg-primary/20 w-fit">
-                    <Briefcase className="h-6 w-6 text-primary" />
-                  </div>
-                </div>
+        <div className="relative">
+          {/* Timeline line */}
+          <div className="absolute left-8 md:left-12 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-accent to-primary/20"></div>
+          
+          <div className="space-y-8">
+            {experiences.map((exp, index) => (
+              <div 
+                key={index}
+                className="relative animate-slide-up"
+                style={{ animationDelay: `${index * 150}ms` }}
+              >
+                {/* Timeline dot */}
+                <div className="absolute left-8 md:left-12 -translate-x-1/2 w-4 h-4 rounded-full bg-primary border-4 border-background shadow-glow z-10"></div>
                 
-                <div className="flex-grow space-y-4">
-                  <div>
-                    <h3 className="text-xl md:text-2xl font-bold text-foreground mb-1">{exp.title}</h3>
-                    <p className="text-primary font-semibold">{exp.company}</p>
-                    <div className="flex flex-wrap gap-2 text-sm text-muted-foreground mt-1">
-                      <span>{exp.location}</span>
-                      <span>•</span>
-                      <span>{exp.period}</span>
+                {/* Content Card */}
+                <div className="ml-16 md:ml-24">
+                  <Card 
+                    className="p-6 md:p-8 bg-gradient-card backdrop-blur-sm border-border hover:shadow-glow transition-all duration-300 hover:-translate-y-1 group"
+                  >
+                    <div className="flex flex-col md:flex-row md:items-start gap-4">
+                      <div className="flex-shrink-0">
+                        <div className="p-3 rounded-full bg-primary/20 w-fit group-hover:bg-primary/30 transition-colors">
+                          <Briefcase className="h-6 w-6 text-primary" />
+                        </div>
+                      </div>
+                      
+                      <div className="flex-grow space-y-4">
+                        <div>
+                          <h3 className="text-xl md:text-2xl font-bold text-foreground mb-1 group-hover:text-primary transition-colors">{exp.title}</h3>
+                          <p className="text-primary font-semibold">{exp.company}</p>
+                          <div className="flex flex-wrap gap-2 text-sm text-muted-foreground mt-1">
+                            <span>{exp.location}</span>
+                            <span>•</span>
+                            <span className="font-mono text-xs">{exp.period}</span>
+                          </div>
+                        </div>
+
+                        <ul className="space-y-2">
+                          {exp.description.map((item, i) => (
+                            <li key={i} className="text-foreground/80 flex items-start gap-2">
+                              <span className="text-primary mt-1.5">▹</span>
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+
+                        <div className="flex flex-wrap gap-2 pt-2">
+                          {exp.skills.map((skill, i) => (
+                            <Badge key={i} variant="secondary" className="bg-secondary/60 hover:bg-secondary transition-colors">
+                              {skill}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
                     </div>
-                  </div>
-
-                  <ul className="space-y-2">
-                    {exp.description.map((item, i) => (
-                      <li key={i} className="text-foreground/80 flex items-start gap-2">
-                        <span className="text-primary mt-1.5">▹</span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div className="flex flex-wrap gap-2 pt-2">
-                    {exp.skills.map((skill, i) => (
-                      <Badge key={i} variant="secondary" className="bg-secondary/60 hover:bg-secondary">
-                        {skill}
-                      </Badge>
-                    ))}
-                  </div>
+                  </Card>
                 </div>
               </div>
-            </Card>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>
