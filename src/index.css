@@ -1,94 +1,99 @@
+/* Fonts — self-hosted via @fontsource (no render-blocking, font-display: swap) */
+@import "@fontsource/ibm-plex-sans/400.css";
+@import "@fontsource/ibm-plex-sans/500.css";
+@import "@fontsource/ibm-plex-sans/600.css";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
+@import "@fontsource/ibm-plex-mono/600.css";
+@import "@fontsource-variable/newsreader";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* =========================================================================
+   Direction A — "Technical Datasheet"
+   Light = paper · Dark = terminal · one disciplined accent (signal vermilion)
+   All colors HSL. Numbers are the visual anchors.
+   ========================================================================= */
 
 @layer base {
   :root {
-    --background: 220 25% 8%;
-    --foreground: 210 40% 98%;
+    /* paper */
+    --background: 40 22% 97%;
+    --foreground: 20 10% 12%;
 
-    --card: 220 23% 12%;
-    --card-foreground: 210 40% 98%;
+    --card: 40 24% 99%;
+    --card-foreground: 20 10% 12%;
 
-    --popover: 220 23% 12%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 40 24% 99%;
+    --popover-foreground: 20 10% 12%;
 
-    --primary: 195 100% 50%;
-    --primary-foreground: 220 25% 8%;
+    --primary: 14 80% 47%;
+    --primary-foreground: 40 30% 98%;
 
-    --secondary: 220 20% 18%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 36 16% 91%;
+    --secondary-foreground: 20 10% 12%;
 
-    --muted: 220 20% 18%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 36 16% 92%;
+    --muted-foreground: 24 7% 40%;
 
-    --accent: 185 85% 45%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 36 16% 91%;
+    --accent-foreground: 20 10% 12%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 72% 45%;
+    --destructive-foreground: 40 30% 98%;
 
-    --border: 220 20% 20%;
-    --input: 220 20% 20%;
-    --ring: 195 100% 50%;
+    --border: 30 13% 85%;
+    --input: 30 13% 85%;
+    --ring: 14 80% 47%;
 
-    --radius: 0.75rem;
+    /* the signal accent, isolated so it never gets confused with UI surfaces */
+    --signal: 14 80% 47%;
 
-    /* Custom gradient tokens */
-    --gradient-primary: linear-gradient(135deg, hsl(195 100% 50%) 0%, hsl(185 85% 45%) 100%);
-    --gradient-hero: linear-gradient(135deg, hsl(195 100% 50%) 0%, hsl(210 100% 60%) 50%, hsl(185 85% 45%) 100%);
-    --gradient-card: linear-gradient(135deg, hsl(220 23% 12% / 0.8) 0%, hsl(220 20% 18% / 0.6) 100%);
+    --radius: 0.25rem;
 
-    /* Shadow tokens */
-    --shadow-glow: 0 0 40px hsl(195 100% 50% / 0.15);
-    --shadow-card: 0 8px 32px hsl(220 25% 5% / 0.4);
-
-    /* Transition tokens */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Type scale — ~1.25 modular */
+    --step--1: 0.8rem;
+    --step-0: 1rem;
+    --step-1: 1.25rem;
+    --step-2: 1.563rem;
+    --step-3: 1.953rem;
+    --step-4: 2.441rem;
+    --step-display: clamp(3rem, 8vw, 6rem);
   }
 
-  /* Light mode color scheme */
-  :root.light {
-    --background: 210 40% 96%;
-    --foreground: 220 20% 20%;
+  .dark {
+    /* terminal */
+    --background: 24 12% 7%;
+    --foreground: 40 15% 92%;
 
-    --card: 210 40% 100%;
-    --card-foreground: 220 20% 20%;
+    --card: 24 12% 9%;
+    --card-foreground: 40 15% 92%;
 
-    --popover: 210 40% 100%;
-    --popover-foreground: 220 20% 20%;
+    --popover: 24 12% 9%;
+    --popover-foreground: 40 15% 92%;
 
-    --primary: 195 100% 45%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 14 85% 58%;
+    --primary-foreground: 24 12% 7%;
 
-    --secondary: 220 30% 88%;
-    --secondary-foreground: 220 20% 20%;
+    --secondary: 30 8% 15%;
+    --secondary-foreground: 40 15% 92%;
 
-    --muted: 220 30% 88%;
-    --muted-foreground: 215 15% 45%;
+    --muted: 30 8% 14%;
+    --muted-foreground: 40 6% 62%;
 
-    --accent: 185 85% 40%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 30 8% 16%;
+    --accent-foreground: 40 15% 92%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 40 15% 92%;
 
-    --border: 220 30% 85%;
-    --input: 220 30% 85%;
-    --ring: 195 100% 45%;
+    --border: 40 9% 19%;
+    --input: 40 9% 19%;
+    --ring: 14 85% 58%;
 
-    /* Light mode gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(195 100% 45%) 0%, hsl(185 85% 40%) 100%);
-    --gradient-hero: linear-gradient(135deg, hsl(195 100% 45%) 0%, hsl(210 100% 55%) 50%, hsl(185 85% 40%) 100%);
-    --gradient-card: linear-gradient(135deg, hsl(210 40% 98% / 0.8) 0%, hsl(220 30% 93% / 0.8) 100%);
-
-    /* Light mode shadows */
-    --shadow-glow: 0 0 40px hsl(195 100% 45% / 0.1);
-    --shadow-card: 0 8px 32px hsl(220 25% 50% / 0.1);
+    --signal: 14 85% 58%;
   }
 }
 
@@ -97,7 +102,72 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground;
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    font-feature-settings: "ss01", "cv05";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Tabular, lining figures everywhere numbers carry signal */
+  .tnum,
+  .font-mono {
+    font-feature-settings: "tnum", "zero";
+    font-variant-numeric: tabular-nums slashed-zero;
+  }
+
+  /* Editorial serif reserved for the name + section headers */
+  .font-serif {
+    font-family: "Newsreader Variable", "Newsreader", Georgia, serif;
+  }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: hsl(var(--signal) / 0.18);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* mono uppercase label used for section indices, units, metadata */
+  .label-mono {
+    @apply font-mono uppercase tracking-[0.14em] text-muted-foreground;
+    font-size: var(--step--1);
+  }
+
+  /* paper grain — faint, behind everything; respects theme via opacity */
+  .paper-grain::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.4;
+    background-image: radial-gradient(
+      hsl(var(--foreground) / 0.04) 0.5px,
+      transparent 0.5px
+    );
+    background-size: 4px 4px;
   }
 }
