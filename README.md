@@ -1,73 +1,99 @@
-# Welcome to your Lovable project
+# rishidave.com
 
-## Project info
+Personal site for Rishi Dave — a fast, recruiter-first credibility router. Built as a
+"technical datasheet": numbers are the visual anchors, and every headline stat links to
+primary evidence (merged PRs, arXiv, GitHub, talk recordings).
 
-**URL**: https://lovable.dev/projects/d765f770-6d14-4be2-8374-44a69fba7d94
+Stack: Vite + React + TypeScript + Tailwind + shadcn-ui, deployed on Vercel.
 
-## How can I edit this code?
-
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/d765f770-6d14-4be2-8374-44a69fba7d94) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+## Develop
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+npm install
+npm run dev        # http://localhost:8080
+npm run build      # runs prebuild (PR fetch + content validation), then builds to dist/
+npm run preview    # serve the production build
+npm run typecheck  # tsc --noEmit
 ```
 
-**Edit a file directly in GitHub**
+## ✏️ Updating content — the one file that matters
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+**All** stats, projects, PRs, experience, research, and links live in a single typed file:
 
-**Use GitHub Codespaces**
+```
+src/content/profile.ts
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Edit a number, add an experience, swap a link — the page re-renders from this data. You
+never touch component code to update content. The shape is enforced by a zod schema
+(`src/content/schema.ts`); types are derived from it (`src/content/types.ts`).
 
-## What technologies are used for this project?
+Two flags control how items render:
 
-This project is built with:
+- **`confirm: true`** on a stat → the number is **unverified**. A `CONFIRM` marker shows in
+  `npm run dev` / preview (hidden in production), and **every build prints the full list of
+  CONFIRM stats** so nothing unverified ships by accident. Verify against the live source,
+  then delete the flag.
+- **`pending: true`** on a link → the target isn't live yet (e.g. an arXiv preprint). The UI
+  renders a clearly-marked "forthcoming" slot instead of a fake URL. When the link goes live,
+  drop in the real `href` and remove `pending`.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+The build **fails** if `profile.ts` is structurally invalid or has empty required fields, so
+malformed content can't reach production.
 
-## How can I deploy this project?
+### Live merged-PR count (optional, self-updating)
 
-Simply open [Lovable](https://lovable.dev/projects/d765f770-6d14-4be2-8374-44a69fba7d94) and click on Share -> Publish.
+The merged-PR number is fetched at build time from the GitHub Search API
+(`scripts/fetch-pr-count.mjs`) so it never goes stale, and is written to
+`src/content/generated/pr-stats.json`. It counts merged PRs authored by `Rishi-Dave` in
+`microsoft/onnxruntime` + `pytorch/pytorch`.
 
-## Can I connect a custom domain to my Lovable project?
+- It **degrades gracefully**: if the fetch fails (offline, rate limit), the last committed
+  value is kept and the content layer falls back to `STATIC_MERGED_PRS` in `profile.ts`.
+- Set `GITHUB_TOKEN` for a higher rate limit (recommended on CI / Vercel):
+  add it under **Vercel → Settings → Environment Variables**.
+- Run it manually: `npm run fetch:prs`.
 
-Yes, you can!
+## Architecture
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+```
+src/
+  content/
+    profile.ts               # ← single source of truth (edit here)
+    schema.ts                # zod schema (shape contract, build-time validation)
+    types.ts                 # types derived from schema
+    generated/pr-stats.json  # build-time merged-PR count (+ static fallback)
+  components/                # StatBlock, EvidenceLink, PRRow, ResearchEntry, ExperienceRow,
+                             # ProjectCard, SectionHeader, ThemeToggle, SiteNav, SiteFooter …
+  sections/                  # Hero / OpenSource / Research / Projects / Experience
+  pages/Index.tsx            # assembles the sections in recruiter-first order
+scripts/
+  fetch-pr-count.mjs         # optional live PR count
+  validate-content.ts        # zod validation + CONFIRM reminder (build gate)
+```
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Design system lives in `src/index.css` (tokens, light "paper" / dark "terminal") and
+`tailwind.config.ts` (type scale, fonts). Fonts are self-hosted via `@fontsource`
+(IBM Plex Sans/Mono + Newsreader) — no render-blocking Google Fonts, no layout shift.
+
+## Deploy — Vercel + rishidave.com
+
+The project deploys on Vercel (config in `vercel.json`: SPA rewrites + immutable asset
+caching). To put it on the custom domain:
+
+1. **Vercel → Project → Settings → Domains** → add `rishidave.com` **and** `www.rishidave.com`.
+2. Set `rishidave.com` as the **primary** domain; let `www` 308-redirect to it. Enable
+   **"redirect to primary domain"** so the `*.vercel.app` URL is no longer canonical.
+3. **DNS at your registrar** (use the exact records Vercel shows — current values):
+   - `A`  `@`  → `76.76.21.21`
+   - `CNAME`  `www`  → `cname.vercel-dns.com`
+4. Wait for DNS + automatic TLS. `index.html` already declares
+   `<link rel="canonical" href="https://rishidave.com/">`.
+
+Optional: add `GITHUB_TOKEN` as a build env var (see live-PR-count above).
+
+## Quality bar
+
+Lighthouse (production build): **Performance 95 · Accessibility 100 · Best Practices 100 ·
+SEO 100**, CLS 0, TBT 0 ms. Responsive from 360px; light/dark both first-class;
+keyboard-navigable with a skip link and semantic landmarks.
